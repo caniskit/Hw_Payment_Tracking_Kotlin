@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         btnNew.setOnClickListener {
 
             val intent = Intent(this,AddNewPaymentType()::class.java)
-            startActivity(intent)
+            resultLauncher.launch(intent)
         }
 
         //val pty = PaymentType(null,"Araba Taksidi",Period.AYLIK,20)
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun adapterOnClick(paymentType: PaymentType) {
         val intent=Intent(this,PaymentDetail()::class.java )
-        intent.putExtra("id",paymentType.Id)
+        intent.putExtra("pid",paymentType.Id)
         resultLauncher.launch(intent)
     }
 }

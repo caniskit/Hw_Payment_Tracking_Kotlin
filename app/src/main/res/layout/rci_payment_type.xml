@@ -37,12 +37,12 @@
         android:layout_marginEnd="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintEnd_toStartOf="@+id/btnAddPayment"
         app:layout_constraintStart_toEndOf="@+id/tvPeriod"
         app:layout_constraintTop_toTopOf="@+id/tvTitle" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnAddPayment"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -9,7 +9,7 @@ import android.os.Parcelable
 class DatabaseOpenHelper(context : Context, name: String, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context,name,factory,version){
 
     override fun onCreate(db: SQLiteDatabase?) {
-    var query = "CREATE TABLE 'paymentType'(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Title TEXT,Period TEXT, Day INTEGER)"
+    var    query = "CREATE TABLE 'paymentType'(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Title TEXT,Period INTEGER, Day INTEGER)"
 
     db!!.execSQL(query)
 

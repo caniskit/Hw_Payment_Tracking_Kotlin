@@ -7,7 +7,7 @@
     tools:context=".PaymentDetail">
 
     <Button
-        android:id="@+id/pymSave2"
+        android:id="@+id/btnEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnCancel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -80,7 +80,7 @@
         android:text="Tarih"
         app:layout_constraintEnd_toStartOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="@+id/recyclerView2"
-        app:layout_constraintTop_toBottomOf="@+id/pymSave2" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEdit" />
 
     <TextView
         android:id="@+id/textView7"

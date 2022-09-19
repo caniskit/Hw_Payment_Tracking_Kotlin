@@ -34,12 +34,12 @@ class AddNewPaymentType : AppCompatActivity(), AdapterView.OnItemSelectedListene
             btnDelete.isVisible=true
             btnSubmit.text="Güncelle"
 
-            spPeriod.setOnClickListener{
+            spPeriod.onItemSelectedListener=this
                 if(spPeriod.selectedItemId==0L){
                     etxPeriodDay.isClickable=false
                     etxPeriodDay.text=null
 
-                }}
+                }
             btnSubmit.setOnClickListener {
                 if(etxTitle.text.isBlank()){
                     Toast.makeText(this,"Başlık Boş Bıraklamaz",Toast.LENGTH_SHORT)
@@ -50,9 +50,13 @@ class AddNewPaymentType : AppCompatActivity(), AdapterView.OnItemSelectedListene
                     if(spPeriod.id==0){
 
                         pymOp.UpdatePaymentType(PaymentType(id,etxTitle.text.toString(),null,null))
+                        setResult(RESULT_OK)
+                        finish()
 
                     }else{
                         pymOp.UpdatePaymentType(PaymentType(id,etxTitle.text.toString(),spPeriod.id,etxPeriodDay.text.toString().toInt()))
+                        setResult(RESULT_OK)
+                        finish()
                     }
                 }}
 
@@ -72,10 +76,12 @@ class AddNewPaymentType : AppCompatActivity(), AdapterView.OnItemSelectedListene
                 if(spPeriod.id==0){
 
                  pymOp.AddPaymentType(PaymentType(null,etxTitle.text.toString(),null,null))
+                    setResult(RESULT_OK)
                     finish()
 
                 }else{
-                    pymOp.AddPaymentType(PaymentType(null,etxTitle.text.toString(),spPeriod.id,etxPeriodDay.text.toString().toInt()))
+                    pymOp.AddPaymentType(PaymentType(null,etxTitle.text.toString(),spPeriod.selectedItemId.toInt(),etxPeriodDay.text.toString().toIntOrNull()))
+                    setResult(RESULT_OK)
                     finish()
                 }
             }}
@@ -87,8 +93,6 @@ class AddNewPaymentType : AppCompatActivity(), AdapterView.OnItemSelectedListene
 
     }
     fun rangeControl(period :String?,day: Int?):Boolean{
-        period.let{
-            it!!.toInt()}
 
         if(period=="AYLIK" && (day==null||day<1 ||day>31)){
             return false
