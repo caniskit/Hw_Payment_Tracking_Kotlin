@@ -13,6 +13,20 @@
         android:theme="@style/Theme.Hw_Payment_Tracking_Kotlin"
         tools:targetApi="31">
         <activity
+            android:name=".PaymentDetail"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AddPayment"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".AddNewPaymentType"
             android:exported="false">
             <meta-data

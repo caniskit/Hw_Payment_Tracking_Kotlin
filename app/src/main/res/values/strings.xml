@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Hw_Payment_Tracking_Kotlin</string>
+    <string-array name="periods">
+        <item>Periyod</item>
+        <item>Yıllık</item>
+        <item>Aylık</item>
+        <item>Haftalık</item>
+    </string-array>
 </resources>
