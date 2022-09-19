@@ -104,31 +104,28 @@ class PaymentOperation(context: Context) {
         return paymentDatabase!!.rawQuery(query,null)
     }
 
-
-
-
-
-
     @SuppressLint("Range")
     fun GetAllPaymentbyId(id : Int): ArrayList<Payment>{
 
         val Payments = ArrayList<Payment>()
         var payment : Payment
         open()
-        val crs = GetByTdPayments(id) as Cursor
-        crs.let{
-            it.moveToFirst()
+        val crs = GetByIdPayments(id) as Cursor
+        try {
+            if (crs.moveToFirst()) {
             do {
                 payment = Payment()
-                payment.Id= it.getInt(it.getColumnIndex("Id"))
-                payment.Amount= it.getString(it.getColumnIndex("Amount"))
-                payment.Date= it.getString(it.getColumnIndex("Date"))
+                payment.Id= crs.getInt(crs.getColumnIndex("Id"))
+                payment.Amount= crs.getString(crs.getColumnIndex("Amount"))
+                payment.Date= crs.getString(crs.getColumnIndex("Date"))
                 Payments.add(payment)
             }
-            while(it.moveToNext())
+            while(crs.moveToNext())
 
+        }}catch (e:Exception){Log.d("error","Error while trying to get PaymentTypes from database")
+        }finally {
+            close()
         }
-        close()
 
 
 
@@ -136,9 +133,40 @@ class PaymentOperation(context: Context) {
 
     }
 
-    private fun GetByTdPayments(id:Int): Cursor {
+    private fun GetByIdPayments(id:Int): Cursor {
         var query = "Select * from payment Where PTypeId = ?"
 
         return paymentDatabase!!.rawQuery(query, arrayOf(id.toString()))
     }
+
+    @SuppressLint("Range")
+    fun GetPaymentTypebyId(id : Int): PaymentType{
+        var paymentType =PaymentType()
+        open()
+        val crs = GetPaymentTypeById(id) as Cursor
+        try{
+            if(crs.moveToFirst())
+            {
+                paymentType= PaymentType()
+                paymentType.Id=crs.getInt(crs.getColumnIndex("Id"))
+                paymentType.Title=crs.getString(crs.getColumnIndex("Title"))
+                paymentType.Period= crs.getInt(crs.getColumnIndex("Period"))
+                paymentType.Day= crs.getInt(crs.getColumnIndex("Day"))
+
+            }
+        }catch (e:Exception){
+
+        }finally {
+            close()
+        }
+        return paymentType
+    }
+
+    private fun GetPaymentTypeById(id:Int): Cursor{
+
+        var query = "Select * from paymentType where Id =?"
+        return paymentDatabase!!.rawQuery(query, arrayOf(id.toString()))
+
+
+           }
 }

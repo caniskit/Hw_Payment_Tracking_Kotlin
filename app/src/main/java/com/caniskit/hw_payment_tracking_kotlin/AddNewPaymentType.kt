@@ -1,5 +1,6 @@
 package com.caniskit.hw_payment_tracking_kotlin
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -13,6 +14,7 @@ import com.caniskit.hw_payment_tracking_kotlin.databinding.ActivityAddNewPayment
 
 class AddNewPaymentType : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var  binding: ActivityAddNewPaymentTypeBinding
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNewPaymentTypeBinding.inflate(layoutInflater)
@@ -33,6 +35,16 @@ class AddNewPaymentType : AppCompatActivity(), AdapterView.OnItemSelectedListene
             btnDelete.isClickable=true
             btnDelete.isVisible=true
             btnSubmit.text="Güncelle"
+            val pyOp = PaymentOperation(this)
+            val pt= pyOp.GetPaymentTypebyId(id)
+            etxTitle.setText(pt.Title)
+            spPeriod.setSelection(if(pt.Period!=null)pt.Period!!else 0)
+            etxPeriodDay.setText(if(pt.Day!=null)pt.Day.toString()else null)
+
+            btnDelete.setOnClickListener {
+                pyOp.DeletePayment(id)
+                finish()
+            }
 
             spPeriod.onItemSelectedListener=this
                 if(spPeriod.selectedItemId==0L){

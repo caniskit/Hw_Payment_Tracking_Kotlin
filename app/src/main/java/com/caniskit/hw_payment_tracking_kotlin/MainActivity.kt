@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 
     var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if(it.resultCode == RESULT_OK){
+
+            println("updated")
             binding.recyclerView.adapter?.notifyDataSetChanged()
 
         }
